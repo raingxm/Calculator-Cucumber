@@ -1,9 +1,10 @@
-Given /^the input "([^"]*)"$/ do |arg1|
-  pending
+Given /^the input "([^"]*)"$/ do |input|
+  @input = input
 end
 
-Given /^the calculator is run$/ do
-  pending
+When /^the calculator is run$/ do
+  @output = `ruby calc.rb #{@input}`
+  raise('Command Failed') unless $?.success?
 end
 
 Then /^the output should be "([^"]*)"$/ do |arg1|
